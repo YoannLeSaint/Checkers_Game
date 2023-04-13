@@ -30,7 +30,7 @@ returns:
 [10,10] no piece found
 return int[2]
 */
-int * recurciveKing_checkPiece(char** checker,int* kingPosition,int* targetPosition,int* foundPiece, int nbLoop){
+int * recurciveKing_checkPiece(char checker[10][10],int* kingPosition,int* targetPosition,int* foundPiece, int nbLoop){
     int dirX;
     int dirY;
     nbLoop++;       //Incremente nbLoop
@@ -89,7 +89,7 @@ int * recurciveKing_checkPiece(char** checker,int* kingPosition,int* targetPosit
 }
 
 
-int movePawn(char** checker, int* oldPosition, int* newPosition){
+int movePawn(char checker[10][10], int* oldPosition, int* newPosition){
     int x = oldPosition[0];
     int y = oldPosition[1];
     int newX = newPosition[0];
@@ -97,7 +97,11 @@ int movePawn(char** checker, int* oldPosition, int* newPosition){
     int *pieceToTransform;
     int defaultList[2] = {10,10};
 
-    if ( checker[newX][newY] != ' ') return (0);
+    printf("%d : %d : %d : %d",x,y,newX,newY);
+    if ( checker[newX][newY] != ' '){
+        printf("La coordonnee cible tombe sur un %c et non sur un espace vide\n\n",checker[newX][newY]);
+        return (0);
+    } 
     if ( checker[x][y] == 'B' || checker[x][y] == 'W' ){
         // you tring to move the KING
         //verify if we move in diagonal
@@ -127,9 +131,15 @@ int movePawn(char** checker, int* oldPosition, int* newPosition){
                     checker[newX][newY] = checker[x][y];
                     checker[x][y] = ' ';
                 }
-                else return(0);
+                else {
+                    printf("La case est trop loin et aucun pion adverse n'est sur le chemin\n\n");
+                    return(0);
+                }
             }
-            else return(0);
+            else {
+                printf("La coordonnee indiquee est invalide (trop loin ou pas en diagonale ou mauvais sens)\n\n");
+                return(0);
+            }
 
             //transform into a queen
             if(newY==9) checker[newX][newY]='W';
@@ -149,9 +159,15 @@ int movePawn(char** checker, int* oldPosition, int* newPosition){
                     checker[newX][newY] = checker[x][y];
                     checker[x][y] = ' ';
                 }
-                else return(0);
+                else {
+                    printf("La case est trop loin et aucun pion adverse n'est sur le chemin\n\n");
+                    return(0);
+                }
             }
-            else return(0);
+            else {
+                printf("La coordonnee indiquee est invalide (trop loin ou pas en diagonale ou mauvais sens)\n\n");
+                return(0);
+            }
 
             //transform into a queen
             if(newY==0){
@@ -162,7 +178,7 @@ int movePawn(char** checker, int* oldPosition, int* newPosition){
     }
 }
 
-int chooseMove(char** checker,char player){
+int chooseMove(char checker[10][10],char player){
     /*
     isMoveForced= getIfMoveForced(player)
     if(isMoveForced)movePawn(checker,...)
@@ -176,6 +192,11 @@ int chooseMove(char** checker,char player){
         scanf("%d",&playerCoord[0]);
         printf("Entrez la coordonnee vericale de votre piece a jouer:\n");
         scanf("%d",&playerCoord[1]);
+
+        //decalage
+        playerCoord[0]=playerCoord[0]-1;
+        playerCoord[1]=playerCoord[1]-1;
+
         if(playerCoord[0]<0 || playerCoord[0]>9 || playerCoord[1]<0 || playerCoord[1]>9){
             printf("L'une des coordonnees n'est pas sur le tableau, recommencez!\n\n");
         }else{
@@ -188,18 +209,23 @@ int chooseMove(char** checker,char player){
                 isMoveLegal = 0;
             }
             if(isMoveLegal == 0){
-                printf("Vous n'avez pas choisi l'une de vos pieces");
+                printf("Vous n'avez pas choisi l'une de vos pieces\n\n");
             }else{
                 int cibleCoord[2]={-1,-1};
-                printf("Entrez la coordonnee horizontale de :\n");
+                printf("Entrez la coordonnee horizontale de la position ciblee:\n");
                 scanf("%d",&cibleCoord[0]);
-                printf("Entrez la coordonnee vericale de :\n");
+                printf("Entrez la coordonnee vericale de la position ciblee:\n");
                 scanf("%d",&cibleCoord[1]);
+
+                //decalage
+                cibleCoord[0]=cibleCoord[0]-1;
+                cibleCoord[1]=cibleCoord[1]-1;
+
                 if(cibleCoord[0]<0||cibleCoord[0]>9 || cibleCoord[1]<0 || cibleCoord[1]>9){
                     printf("L'une des coordonnees n'est pas sur le tableau, recommencez!\n\n");
                 }else{
                     isMoveLegal=movePawn(checker,playerCoord,cibleCoord);
-                    if(isMoveLegal){
+                    if(isMoveLegal!=1){
                         printf("Le mouvement est incorrect\n\n");
                     }
                 }
@@ -224,7 +250,7 @@ void showChecker(char checker[10][10]){
 }
 
 
-int countPieces(char** checker,char side){
+int countPieces(char checker[10][10],char side){
     if(side == '@' || side == 'B'){
         side = '@';
     }

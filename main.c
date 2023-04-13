@@ -30,5 +30,9 @@ int main(void)
 
     initChecker(checker,NULL);
     showChecker(checker);
+    while(1){
+        chooseMove(checker,'O');
+        showChecker(checker);
+    }
     return (0);
 }

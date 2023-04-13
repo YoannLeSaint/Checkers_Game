@@ -11,10 +11,12 @@
 
 // PROTOTYPE(S)
 void initChecker(char checker[10][10], char * saving);
-int* recurciveKing_checkPiece(char** checker,int* kingPosition,int* targetPosition,int* foundPiece, int nbLoop);
-int movePawn(char** checker, int* oldPosition, int* newPosition);
+int* recurciveKing_checkPiece(char checker[10][10],int* kingPosition,int* targetPosition,int* foundPiece, int nbLoop);
+int movePawn(char checker[10][10], int* oldPosition, int* newPosition);
+int chooseMove(char checker[10][10],char player);
 
 void showChecker(char checker[10][10]);
-int countPieces(char** checker,char side);
+int countPieces(char checker[10][10],char side);
+
 
 #endif /* !UTILS_H_ */
