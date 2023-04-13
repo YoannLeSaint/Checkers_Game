@@ -97,7 +97,6 @@ int movePawn(char checker[10][10], int* oldPosition, int* newPosition){
     int *pieceToTransform;
     int defaultList[2] = {10,10};
 
-    printf("%d : %d : %d : %d",x,y,newX,newY);
     if ( checker[newX][newY] != ' '){
         printf("La coordonnee cible tombe sur un %c et non sur un espace vide\n\n",checker[newX][newY]);
         return (0);
