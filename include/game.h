@@ -12,7 +12,7 @@
 #include "save.h"
 
 // PROTOTYPE(S)
+int nextMove(int tour, char checker[10][10]);
 void initGame();
-void nextMove();
 
 #endif // UNTITLED_GAME
