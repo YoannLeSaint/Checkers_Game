@@ -11,7 +11,7 @@
 #include "utils.h"
 #include "save.h" 
 
-// PROTOTYPE(S)
+// PROTOTYPE(S) 
 int nextMove(int tour, char checker[10][10]);
 void initGame();
 
