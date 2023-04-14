@@ -12,7 +12,7 @@ int nextMove(int tour, char checker[10][10]) {
     showChecker(checker);
 
     printf("\nVoulez-vous enregistrer la partie actuelle ? o/n\n");
-    int out = 1;
+    int out = 1; 
     char answer;
     while (out){
         scanf("%c", &answer);
