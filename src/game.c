@@ -9,7 +9,7 @@ int nextMove(int tour, char checker[10][10]) {
     showChecker(checker);
     printf("C'est au joueur noir de jouer :\n");
     chooseMove(checker,'@');
-    showChecker(checker);
+    showChecker(checker); 
 
     printf("\nVoulez-vous enregistrer la partie actuelle ? o/n\n");
     int out = 1; 
