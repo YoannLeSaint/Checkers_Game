@@ -4,6 +4,7 @@
         "stdio.h": "c",
         "checker.h": "c",
         "main.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "signal.h": "c"
     }
 }
