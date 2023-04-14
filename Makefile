@@ -15,7 +15,9 @@ SRC_MAIN	=	./main.c
 
 # Appel de toutes les sources .c
 SRC	=	$(SRC_MAIN)						\
-		$(SRC_DIR)utils.c
+		$(SRC_DIR)menu.c				\
+		$(SRC_DIR)utils.c				\
+		$(SRC_DIR)game.c
 
 # Transformation des .c en .o
 OBJ		= 	$(SRC:%.c=%.o)
