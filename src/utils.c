@@ -285,10 +285,10 @@ int** getNextForcedMoves(char checker[10][10], char side){
     for(int i = 0; i < 10; i++){
         for(int j = 0; j < 10; j++){
             if((checker[i][j] == '@' || checker[i][j] == 'B') && side == '@'){
-                getForcedMoveFromPiece(checker,all_next_move,checker[i][j],{i,j},0,{-1,-1});
+                getForcedMoveFromPiece(checker,all_next_move,checker[i][j],{i,j},0,{i,j});
             }
             if((checker[i][j] == 'O' || checker[i][j] == 'W') && side == 'O'){
-                getForcedMoveFromPiece(checker,all_next_move,checker[i][j],{i,j},0,{-1,-1});
+                getForcedMoveFromPiece(checker,all_next_move,checker[i][j],{i,j},0,{i,j});
             }
         }
     }
@@ -319,7 +319,7 @@ void getForcedMoveFromPiece(char checker[10][10], int** listOfMoves, char piece,
     }
 
     if(end==1){
-        AddNextMove(next_move *full_next_move,int* firstMove,end ,nbMoves);
+        AddNextMove(next_move *full_next_move, firstMove,end ,nbMoves);
     }
 }
 
